@@ -68,13 +68,8 @@ function M.setup()
 					File = "DiagnosticCategoryFile",
 				}
 
-				if cat and color_map[cat] then
-					vim.api.nvim_set_hl(0, "DiagnosticVirtualText", { link = color_map[cat] })
-				else
-					vim.api.nvim_set_hl(0, "DiagnosticVirtualText", { link = "DiagnosticCategoryDefault" })
-				end
-
-				return diagnostic.message or ""
+				local hl_group = color_map[cat] or "DiagnosticVirtualTextDefault"
+				return diagnostic.message or "", hl_group
 			end,
 		},
 		float = {
