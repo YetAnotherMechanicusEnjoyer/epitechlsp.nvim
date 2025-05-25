@@ -44,7 +44,7 @@ Copy and Paste the code block corresponding to your neovim config's plugin manag
 ### packer.nvim
 ```lua
 use {
-  "ton-plugin/nom-du-plugin",
+  "YetAnotherMechanicusEnjoyer/epitechlsp.nvim",
   requires = {
     "neovim/nvim-lspconfig"
   },
