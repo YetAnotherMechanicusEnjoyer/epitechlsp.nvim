@@ -99,6 +99,11 @@ function runEcsls() {
 
 connection.onInitialized(() => {
   runEcsls();
+  return {
+    capabilities: {
+      textDocumentSync: documents.syncKind,  // ✅ IMPORTANT
+    },
+  };
 });
 
 connection.onDidSaveTextDocument((params) => {
