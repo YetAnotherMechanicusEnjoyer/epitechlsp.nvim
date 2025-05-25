@@ -85,3 +85,7 @@ function runEcsls() {
 connection.onInitialized(() => {
   runEcsls();
 });
+
+connection.onDidSaveTextDocument((params) => {
+  runEcsls();
+});
