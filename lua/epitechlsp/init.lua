@@ -52,37 +52,29 @@ function M.setup()
 
 	vim.diagnostic.config({
 		virtual_text = {
+			prefix = "■",
 			format = function(diagnostic)
 				local cat = diagnostic.user_data
 					and diagnostic.user_data.lsp
 					and diagnostic.user_data.lsp.data
 					and diagnostic.user_data.lsp.data.category
-				local hl_group = "DiagnosticCategoryDefault"
+				local color_map = {
+					Layout = "DiagnosticCategoryLayout",
+					Function = "DiagnosticCategoryFunction",
+					Header = "DiagnosticCategoryHeader",
+					Variable = "DiagnosticCategoryVariable",
+					Control = "DiagnosticCategoryControl",
+					Advanced = "DiagnosticCategoryAdvanced",
+					File = "DiagnosticCategoryFile",
+				}
 
-				if cat == "Layout" then
-					hl_group = "DiagnosticCategoryLayout"
-				elseif cat == "Function" then
-					hl_group = "DiagnosticCategoryFunction"
-				elseif cat == "Header" then
-					hl_group = "DiagnosticCategoryHeader"
-				elseif cat == "Variable" then
-					hl_group = "DiagnosticCategoryVariable"
-				elseif cat == "Control" then
-					hl_group = "DiagnosticCategoryControl"
-				elseif cat == "Advanced" then
-					hl_group = "DiagnosticCategoryAdvanced"
-				elseif cat == "File" then
-					hl_group = "DiagnosticCategoryFile"
+				if cat and color_map[cat] then
+					vim.api.nvim_set_hl(0, "DiagnosticVirtualText", { link = color_map[cat] })
+				else
+					vim.api.nvim_set_hl(0, "DiagnosticVirtualText", { link = "DiagnosticCategoryDefault" })
 				end
 
-				local msg = diagnostic.message or "<no message>"
-
-				return {
-					{
-						text = tostring(msg),
-						hl_group = hl_group,
-					},
-				}
+				return diagnostic.message or ""
 			end,
 		},
 		float = {
