@@ -74,15 +74,9 @@ function runEcsls() {
     });
 
     const diagnostics = parseEcslsOutput(output);
-
-    const urisWithErrors = new Set(Object.keys(diagnostics));
-
-    documents.all().forEach(doc => {
-      const uri = doc.uri;
-      const diags = diagnostics[uri] || [];
+    for (const [uri, diags] of Object.entries(diagnostics)) {
       connection.sendDiagnostics({ uri, diagnostics: diags });
-      urisWithErrors.delete(uri);
-    });
+    }
   } catch (err) {
     connection.console.error(err.message);
   }
