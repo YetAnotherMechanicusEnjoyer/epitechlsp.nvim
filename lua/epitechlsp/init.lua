@@ -44,9 +44,21 @@ function M.setup()
 			vim.api.nvim_create_autocmd("BufWritePost", {
 				buffer = bufnr,
 				callback = function()
-					if client and client.notify then
-						client.notify("textDocument/didSave", { textDocument = { uri = vim.uri_from_bufnr(bufnr) } })
-					end
+					-- Re-demande les diagnostics sur le buffer
+					client.request(
+						"textDocument/diagnostic",
+						{ textDocument = { uri = vim.uri_from_bufnr(bufnr) } },
+						function(err, result, ctx, config)
+							if err then
+								vim.notify("Erreur rechargement diagnostics : " .. err.message, vim.log.levels.ERROR)
+								return
+							end
+							-- Envoie les diagnostics reçus (si besoin, sinon le serveur devrait le faire automatiquement)
+							if result then
+								vim.lsp.diagnostic.on_publish_diagnostics(nil, result, ctx, config)
+							end
+						end
+					)
 				end,
 			})
 		end,
