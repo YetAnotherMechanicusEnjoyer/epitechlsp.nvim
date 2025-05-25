@@ -77,13 +77,16 @@ function runEcsls() {
 
     let hasDiagnostics = Object.keys(diagnostics).length > 0;
 
+    console.error('A');
     documents.all().forEach(doc => {
+      console.error('DOC');
       const uri = doc.uri;
       const diags = diagnostics[uri] || [];
       console.error(uri);
       console.error(diags);
       connection.sendDiagnostics({ uri, diagnostics: diags });
     });
+    console.error('B');
 
     if (!hasDiagnostics) {
       console.error("Aucune erreur détectée");
