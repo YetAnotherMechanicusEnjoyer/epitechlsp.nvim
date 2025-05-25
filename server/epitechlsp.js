@@ -66,6 +66,7 @@ function parseEcslsOutput(output) {
   return diagnosticsByFile;
 }
 
+
 function runEcsls() {
   try {
     const output = cp.execSync('ecsls_run', {
@@ -74,9 +75,15 @@ function runEcsls() {
     });
 
     const diagnostics = parseEcslsOutput(output);
-    for (const [uri, diags] of Object.entries(diagnostics)) {
+
+    const openFiles = Object.keys(diagnostics);
+
+    documents.all().forEach(doc => {
+      const uri = doc.uri;
+      const diags = diagnostics[uri] || [];
       connection.sendDiagnostics({ uri, diagnostics: diags });
-    }
+    });
+
   } catch (err) {
     connection.console.error(err.message);
   }
