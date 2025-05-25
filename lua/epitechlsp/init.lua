@@ -75,9 +75,11 @@ function M.setup()
 					hl_group = "DiagnosticCategoryFile"
 				end
 
+				local msg = diagnostic.message or "<no message>"
+
 				return {
 					{
-						text = diagnostic.message,
+						text = tostring(msg),
 						hl_group = hl_group,
 					},
 				}
