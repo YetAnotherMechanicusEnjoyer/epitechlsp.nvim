@@ -73,16 +73,16 @@ function runEcsls() {
       cwd: process.cwd(),
     });
 
-    // Parse la sortie en diagnostics par fichier (URI)
     const diagnostics = parseEcslsOutput(output);
 
-    // Pour chaque document ouvert, on envoie les diagnostics correspondants ou une liste vide
+    const urisWithErrors = new Set(Object.keys(diagnostics));
+
     documents.all().forEach(doc => {
-      const uri = doc.uri; // URI au format file://
+      const uri = doc.uri;
       const diags = diagnostics[uri] || [];
       connection.sendDiagnostics({ uri, diagnostics: diags });
+      urisWithErrors.delete(uri);
     });
-
   } catch (err) {
     connection.console.error(err.message);
   }
