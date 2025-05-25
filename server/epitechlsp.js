@@ -104,7 +104,7 @@ connection.onInitialized(() => {
   runEcsls();
   return {
     capabilities: {
-      textDocumentSync: documents.syncKind,  // ✅ IMPORTANT
+      textDocumentSync: documents.syncKind,
     },
   };
 });
