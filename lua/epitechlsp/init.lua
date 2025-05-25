@@ -39,35 +39,48 @@ function M.setup()
 		}
 	end
 
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryLayout", { fg = "#fab387" }) -- orange
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryFunction", { fg = "#94e2d5" }) -- teal
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryHeader", { fg = "#f9e2af" }) -- yellow
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryVariable", { fg = "#cba6f7" }) -- purple
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryControl", { fg = "#89b4fa" }) -- blue
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryAdvanced", { fg = "#f38ba8" }) -- red
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryFile", { fg = "#a6e3a1" }) -- green
+	vim.api.nvim_set_hl(0, "DiagnosticCategoryDefault", { fg = "#cdd6f4" }) -- default/gray
+
 	lspconfig.epitechlsp.setup({})
 
 	vim.diagnostic.config({
 		virtual_text = {
 			format = function(diagnostic)
-				local icon = "●"
 				local cat = diagnostic.user_data
 					and diagnostic.user_data.lsp
 					and diagnostic.user_data.lsp.data
 					and diagnostic.user_data.lsp.data.category
+				local hl_group = "DiagnosticCategoryDefault"
 
 				if cat == "Layout" then
-					icon = "🧱"
-				elseif cat == "Functions" then
-					icon = "🔧"
+					hl_group = "DiagnosticCategoryLayout"
+				elseif cat == "Function" then
+					hl_group = "DiagnosticCategoryFunction"
 				elseif cat == "Header" then
-					icon = "📄"
-				elseif cat == "Variables" then
-					icon = "🔣"
+					hl_group = "DiagnosticCategoryHeader"
+				elseif cat == "Variable" then
+					hl_group = "DiagnosticCategoryVariable"
 				elseif cat == "Control" then
-					icon = "🎛️"
+					hl_group = "DiagnosticCategoryControl"
 				elseif cat == "Advanced" then
-					icon = "🧠"
-				elseif cat == "Organization" then
-					icon = "📁"
-				elseif cat == "Global" then
-					icon = "🌐"
+					hl_group = "DiagnosticCategoryAdvanced"
+				elseif cat == "File" then
+					hl_group = "DiagnosticCategoryFile"
 				end
-				return string.format("%s %s", icon, diagnostic.message)
+
+				return {
+					{
+						text = diagnostic.message,
+						hl_group = hl_group,
+					},
+				}
 			end,
 		},
 		float = {
