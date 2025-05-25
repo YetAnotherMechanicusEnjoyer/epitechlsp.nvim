@@ -44,11 +44,9 @@ function M.setup()
 			vim.api.nvim_create_autocmd("BufWritePost", {
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.notify(
-						bufnr,
-						"textDocument/didSave",
-						{ textDocument = { uri = vim.uri_from_bufnr(bufnr) } }
-					)
+					if client and client.notify then
+						client.notify("textDocument/didSave", { textDocument = { uri = vim.uri_from_bufnr(bufnr) } })
+					end
 				end,
 			})
 		end,
