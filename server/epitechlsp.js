@@ -75,7 +75,7 @@ function runEcsls() {
 
     const diagnostics = parseEcslsOutput(output);
     for (const [uri, diags] of Object.entries(diagnostics)) {
-      connection.sendDiagnostics({ uri, diagnostics: diags });
+      connection.sendDiagnostics({ uri, diagnostics: diags || [] });
     }
   } catch (err) {
     connection.console.error(err.message);
