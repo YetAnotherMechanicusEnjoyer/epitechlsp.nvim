@@ -54,7 +54,9 @@ function parseEcslsOutput(output) {
       severity: def.severity,
       source: "epitechlsp",
       code,
-      tag: [def.category]
+      data: {
+        category: def.category,
+      },
     };
     const fileUri = url.pathToFileURL(path.resolve(file)).toString();
     diagnosticsByFile[fileUri] = diagnosticsByFile[fileUri] || [];
