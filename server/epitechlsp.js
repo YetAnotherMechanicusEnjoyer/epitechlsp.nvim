@@ -70,7 +70,7 @@ const lastKnownUris = new Set();
 
 function runEcsls() {
   try {
-    const output = cp.execSync('ecsls_run', {
+    const output = cp.execSync('cs', {
       encoding: 'utf-8',
       cwd: process.cwd(),
     });
