@@ -42,28 +42,31 @@ function M.setup()
 		virtual_text = {
 			format = function(diagnostic)
 				local icon = "●"
-				local cat = diagnostic.user_data and diagnostic.user_data.lsp and diagnostic.user_data.lsp.data and diagnostic.user_data.lsp.data.category
+				local cat = diagnostic.user_data
+					and diagnostic.user_data.lsp
+					and diagnostic.user_data.lsp.data
+					and diagnostic.user_data.lsp.data.category
 
-        if cat == "Layout" then
-          icon = "🧱"
-        elseif cat == "Functions" then
-          icon = "🔧"
-        elseif cat == "Header" then
-          icon = "📄"
-        elseif cat == "Variables" then
-          icon = "🔣"
-        elseif cat == "Control" then
-          icon = "🎛️"
-        elseif cat == "Advanced" then
-          icon = "🧠"
-        elseif cat == "Organization" then
-          icon = "📁"
-        elseif cat == "Global" then
-          icon = "🌐"
-        end
-      end,
-			return string.format("%s %s", icon, diagnostic.message);
-    },
+				if cat == "Layout" then
+					icon = "🧱"
+				elseif cat == "Functions" then
+					icon = "🔧"
+				elseif cat == "Header" then
+					icon = "📄"
+				elseif cat == "Variables" then
+					icon = "🔣"
+				elseif cat == "Control" then
+					icon = "🎛️"
+				elseif cat == "Advanced" then
+					icon = "🧠"
+				elseif cat == "Organization" then
+					icon = "📁"
+				elseif cat == "Global" then
+					icon = "🌐"
+				end
+				return string.format("%s %s", icon, diagnostic.message)
+			end,
+		},
 		float = {
 			source = "always",
 		},
