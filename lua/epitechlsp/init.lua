@@ -19,6 +19,7 @@ end
 
 function M.setup()
 	local lspconfig = require("lspconfig")
+	local configs = require("lspconfig.configs")
 	local util = require("lspconfig.util")
 
 	local plugin_path = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
@@ -27,14 +28,16 @@ function M.setup()
 
 	ensure_npm_deps(server_path)
 
-	lspconfig.epitechlsp = {
-		default_config = {
-			cmd = { "node", server_script },
-			filetypes = { "c", "h", "make" },
-			root_dir = lspconfig.util.root_pattern(".git", "."),
-			name = "epitechlsp",
-		},
-	}
+	if not configs.epitechlsp then
+		configs.epitechlsp = {
+			default_config = {
+				cmd = { "node", server_script },
+				filetypes = { "c", "h", "make" },
+				root_dir = util.root_pattern(".git", "."),
+				name = "epitechlsp",
+			},
+		}
+	end
 
 	lspconfig.epitechlsp.setup({})
 
