@@ -81,7 +81,9 @@ function runEcsls() {
     }
     console.error(i);
     if (i == 0) {
-      connection.sendDiagnostics({ uri: [], diagnostics: [] })
+      documents.all().forEach(doc => {
+        connection.sendDiagnostics({ uri: doc.uri, diagnostics: [] })
+      });
     }
   } catch (err) {
     connection.console.error(err.message);
