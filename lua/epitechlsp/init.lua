@@ -52,32 +52,33 @@ function M.setup()
 
 	vim.diagnostic.config({
 		virtual_text = {
-			prefix = "■",
-			format = function(diagnostic)
+			prefix = function(diagnostic)
 				local cat = diagnostic.user_data
 					and diagnostic.user_data.lsp
 					and diagnostic.user_data.lsp.data
 					and diagnostic.user_data.lsp.data.category
-				local color_map = {
-					Layout = "DiagnosticCategoryLayout",
-					Function = "DiagnosticCategoryFunction",
-					Header = "DiagnosticCategoryHeader",
-					Variable = "DiagnosticCategoryVariable",
-					Control = "DiagnosticCategoryControl",
-					Advanced = "DiagnosticCategoryAdvanced",
-					File = "DiagnosticCategoryFile",
+
+				local prefix_map = {
+					Layout = "%#DiagnosticCategoryLayout#■%*",
+					Function = "%#DiagnosticCategoryFunction#■%*",
+					Header = "%#DiagnosticCategoryHeader#■%*",
+					Variable = "%#DiagnosticCategoryVariable#■%*",
+					Control = "%#DiagnosticCategoryControl#■%*",
+					Advanced = "%#DiagnosticCategoryAdvanced#■%*",
+					File = "%#DiagnosticCategoryFile#■%*",
 				}
 
-				local hl_group = color_map[cat] or "DiagnosticVirtualTextDefault"
-				return diagnostic.message or "", hl_group
+				return prefix_map[cat] or "%#DiagnosticCategoryDefault#■%*"
+			end,
+
+			format = function(diagnostic)
+				return diagnostic.message or ""
 			end,
 		},
-		float = {
-			source = "always",
-		},
-		severity_sort = true,
+
 		signs = true,
 		underline = true,
+		severity_sort = true,
 		update_in_insert = false,
 	})
 end
