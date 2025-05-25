@@ -80,6 +80,8 @@ function runEcsls() {
     documents.all().forEach(doc => {
       const uri = doc.uri;
       const diags = diagnostics[uri] || [];
+      console.error(uri);
+      console.error(diags);
       connection.sendDiagnostics({ uri, diagnostics: diags });
     });
 
