@@ -66,7 +66,6 @@ function parseEcslsOutput(output) {
   return diagnosticsByFile;
 }
 
-
 function runEcsls() {
   try {
     const output = cp.execSync('ecsls_run', {
@@ -74,12 +73,12 @@ function runEcsls() {
       cwd: process.cwd(),
     });
 
+    // Parse la sortie en diagnostics par fichier (URI)
     const diagnostics = parseEcslsOutput(output);
 
-    const openFiles = Object.keys(diagnostics);
-
+    // Pour chaque document ouvert, on envoie les diagnostics correspondants ou une liste vide
     documents.all().forEach(doc => {
-      const uri = doc.uri;
+      const uri = doc.uri; // URI au format file://
       const diags = diagnostics[uri] || [];
       connection.sendDiagnostics({ uri, diagnostics: diags });
     });
