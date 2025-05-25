@@ -11,6 +11,7 @@
   * [Lazy](#lazynvim)
   * [Packer](#packernvim)
   * [Vim Plug](#vim-plug)
+- [License](#license)
 
 ## About
 
@@ -64,3 +65,6 @@ Plug 'YetAnotherMechanicusEnjoyer/epitechlsp.nvim'
 ```lua
 require("epitechlsp").setup()
 ```
+
+## Licence
+[MIT](https://github.com/YetAnotherMechanicusEnjoyer/epitechlsp.nvim/blob/main/LICENSE)
