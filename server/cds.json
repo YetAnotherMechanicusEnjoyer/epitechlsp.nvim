@@ -1,0 +1,254 @@
+{
+  "C-O1": {
+    "label": "C-O1: Contents of the repository",
+    "description": "The repository must not contain compiled, temporary or unnecessary files.",
+    "severity": 2,
+    "category": "Organization"
+  },
+  "C-O2": {
+    "label": "C-O2: File extension",
+    "description": "C source files must only have .c or .h extensions.",
+    "severity": 2,
+    "category": "Organization"
+  },
+  "C-O3": {
+    "label": "C-O3: File coherence",
+    "description": "Each source file must match a logical entity and should not contain unrelated functions.",
+    "severity": 2,
+    "category": "Organization"
+  },
+  "C-O4": {
+    "label": "C-O4: Naming files and folders",
+    "description": "File and folder names must be clear, in English and follow the snake_case convention.",
+    "severity": 2,
+    "category": "Organization"
+  },
+  "C-G1": {
+    "label": "C-G1: File header",
+    "description": "Each file must start with the standard EPITECH header.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G2": {
+    "label": "C-G2: Separation of functions",
+    "description": "Functions must be separated by exactly one empty line.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G3": {
+    "label": "C-G3: Indentation of preprocessor directives",
+    "description": "Preprocessor directives must be indented to match the nesting level using 4 spaces.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G4": {
+    "label": "C-G4: Global variables",
+    "description": "Global variables must be avoided; only global constants marked with 'const' are allowed.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G5": {
+    "label": "C-G5: include directive",
+    "description": "Only .h header files should be included.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G6": {
+    "label": "C-G6: Line endings",
+    "description": "Lines must end in UNIX style (\\n) and not contain a trailing backslash.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G7": {
+    "label": "C-G7: trailing spaces at line end",
+    "description": "No trailing spaces must be present at the end of a line.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G8": {
+    "label": "C-G8: Leading/trailing lines",
+    "description": "No leading empty lines and at most one trailing empty line per file.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G9": {
+    "label": "C-G9: Constant values",
+    "description": "Non-trivial constants must be declared globally or as macros.",
+    "severity": 2,
+    "category": "Global"
+  },
+  "C-G10": {
+    "label": "C-G10: Inline assembly",
+    "description": "Inline assembly is forbidden.",
+    "severity": 3,
+    "category": "Global"
+  },
+  "C-F1": {
+    "label": "C-F1: Function coherence",
+    "description": "Functions should respect the single-responsibility principle.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F2": {
+    "label": "C-F2: Naming functions",
+    "description": "Function names must be verbs in English and follow the snake_case convention.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F3": {
+    "label": "C-F3: line exceeds 80 columns",
+    "description": "Lines must not exceed 80 columns, including the newline character.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F4": {
+    "label": "C-F4: function too long",
+    "description": "Functions must not exceed 20 lines.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F5": {
+    "label": "C-F5: too many function parameters",
+    "description": "Functions must not take more than 4 parameters.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F6": {
+    "label": "C-F6: void in empty parameter list",
+    "description": "Functions without parameters must be declared with 'void'.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F7": {
+    "label": "C-F7: struct passed by value",
+    "description": "Structures must be passed by pointer, not by value.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F8": {
+    "label": "C-F8: comment inside function",
+    "description": "No comments allowed inside function bodies.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-F9": {
+    "label": "C-F9: nested functions",
+    "description": "Nested functions are not allowed.",
+    "severity": 2,
+    "category": "Functions"
+  },
+  "C-L1": {
+    "label": "C-L1: multiple statements on the same line",
+    "description": "A line must contain only one instruction.",
+    "severity": 2,
+    "category": "Layout"
+  },
+  "C-L2": {
+    "label": "C-L2: incorrect indentation",
+    "description": "Use exactly 4 spaces per indentation level. No tabs allowed.",
+    "severity": 2,
+    "category": "Layout"
+  },
+  "C-L3": {
+    "label": "C-L3: misplaced or missing space(s)",
+    "description": "Spaces must be correctly placed around operators and keywords.",
+    "severity": 2,
+    "category": "Layout"
+  },
+  "C-L4": {
+    "label": "C-L4: misplaced curly bracket",
+    "description": "Opening braces must be alone on their line for function definitions.",
+    "severity": 2,
+    "category": "Layout"
+  },
+  "C-L5": {
+    "label": "C-L5: multiple variable declarations",
+    "description": "Only one variable per declaration.",
+    "severity": 2,
+    "category": "Layout"
+  },
+  "C-L6": {
+    "label": "C-L6: incorrect blank lines",
+    "description": "Separate variable declarations from the code by one blank line.",
+    "severity": 2,
+    "category": "Layout"
+  },
+  "C-V1": {
+    "label": "C-V1: identifier naming violation",
+    "description": "Identifiers must be in English and snake_case. Macros must use UPPER_SNAKE_CASE.",
+    "severity": 2,
+    "category": "Variables"
+  },
+  "C-V2": {
+    "label": "C-V2: invalid struct grouping",
+    "description": "Structures must group related fields only.",
+    "severity": 2,
+    "category": "Variables"
+  },
+  "C-V3": {
+    "label": "C-V3: pointer asterisk misplacement",
+    "description": "Asterisks must be placed correctly next to variable names.",
+    "severity": 2,
+    "category": "Variables"
+  },
+  "C-C1": {
+    "label": "C-C1: too many conditional branches",
+    "description": "Conditional structures must have no more than 3 branches and nesting depth < 3.",
+    "severity": 2,
+    "category": "Control"
+  },
+  "C-C2": {
+    "label": "C-C2: complex ternary operator",
+    "description": "Ternary operators must remain simple and must not be chained.",
+    "severity": 2,
+    "category": "Control"
+  },
+  "C-C3": {
+    "label": "C-C3: goto statement used",
+    "description": "The use of 'goto' is forbidden.",
+    "severity": 3,
+    "category": "Control"
+  },
+  "C-H1": {
+    "label": "C-H1: header content violation",
+    "description": "Headers must contain only declarations and macros.",
+    "severity": 2,
+    "category": "Header"
+  },
+  "C-H2": {
+    "label": "C-H2: missing include guards",
+    "description": "Headers must use include guards to prevent double inclusion.",
+    "severity": 2,
+    "category": "Header"
+  },
+  "C-H3": {
+    "label": "C-H3: macro spans multiple statements or lines",
+    "description": "Macros must be single-statement and fit on one line.",
+    "severity": 2,
+    "category": "Header"
+  },
+  "C-A1": {
+    "label": "C-A1: pointer to const data missing",
+    "description": "Mark data as 'const' if it should not be modified through the pointer.",
+    "severity": 2,
+    "category": "Advanced"
+  },
+  "C-A2": {
+    "label": "C-A2: inaccurate data type",
+    "description": "Use the most appropriate data type for your variables.",
+    "severity": 2,
+    "category": "Advanced"
+  },
+  "C-A3": {
+    "label": "C-A3: missing newline at end of file",
+    "description": "Files must end with a newline character.",
+    "severity": 1,
+    "category": "Advanced"
+  },
+  "C-A4": {
+    "label": "C-A4: missing static on unused globals",
+    "description": "Global functions and variables not used externally must be marked 'static'.",
+    "severity": 2,
+    "category": "Advanced"
+  }
+}
