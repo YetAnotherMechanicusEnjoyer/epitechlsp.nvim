@@ -66,6 +66,8 @@ function parseEcslsOutput(output) {
   return diagnosticsByFile;
 }
 
+const lastKnownUris = new Set();
+
 function runEcsls() {
   try {
     const output = cp.execSync('ecsls_run', {
@@ -75,21 +77,22 @@ function runEcsls() {
 
     const diagnostics = parseEcslsOutput(output);
 
-    let hasDiagnostics = Object.keys(diagnostics).length > 0;
+    const currentUris = new Set(Object.keys(diagnostics));
 
-    console.error('A');
-    documents.all().forEach(doc => {
-      console.error('DOC');
-      const uri = doc.uri;
-      const diags = diagnostics[uri] || [];
-      console.error(uri);
-      console.error(diags);
+    for (const [uri, diags] of Object.entries(diagnostics)) {
       connection.sendDiagnostics({ uri, diagnostics: diags });
-    });
-    console.error('B');
+      lastKnownUris.add(uri);
+    }
 
-    if (!hasDiagnostics) {
-      console.error("Aucune erreur détectée");
+    for (const uri of lastKnownUris) {
+      if (!currentUris.has(uri)) {
+        connection.sendDiagnostics({ uri, diagnostics: [] });
+      }
+    }
+
+    lastKnownUris.clear();
+    for (const uri of currentUris) {
+      lastKnownUris.add(uri);
     }
 
   } catch (err) {
@@ -104,6 +107,10 @@ connection.onInitialized(() => {
       textDocumentSync: documents.syncKind,  // ✅ IMPORTANT
     },
   };
+});
+
+documents.onDidOpen((change) => {
+  connection.console.log(`Fichier ouvert : ${change.document.uri}`);
 });
 
 connection.onDidSaveTextDocument((params) => {
