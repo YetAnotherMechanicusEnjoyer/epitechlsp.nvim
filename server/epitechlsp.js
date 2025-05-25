@@ -74,17 +74,19 @@ function runEcsls() {
     });
 
     const diagnostics = parseEcslsOutput(output);
-    i = 0;
-    for (const [uri, diags] of Object.entries(diagnostics)) {
-      connection.sendDiagnostics({ uri, diagnostics: diags || [] });
-      i++;
+
+    let hasDiagnostics = Object.keys(diagnostics).length > 0;
+
+    documents.all().forEach(doc => {
+      const uri = doc.uri;
+      const diags = diagnostics[uri] || [];
+      connection.sendDiagnostics({ uri, diagnostics: diags });
+    });
+
+    if (!hasDiagnostics) {
+      console.error("Aucune erreur détectée");
     }
-    console.error(i);
-    if (i == 0) {
-      documents.all().forEach(doc => {
-        connection.sendDiagnostics({ uri: doc.uri, diagnostics: [] })
-      });
-    }
+
   } catch (err) {
     connection.console.error(err.message);
   }
