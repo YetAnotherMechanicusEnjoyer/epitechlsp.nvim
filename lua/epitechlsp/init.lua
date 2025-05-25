@@ -39,7 +39,20 @@ function M.setup()
 		}
 	end
 
-	lspconfig.epitechlsp.setup({})
+	lspconfig.epitechlsp.setup({
+		on_attach = function(client, bufnr)
+			vim.api.nvim_create_autocmd("BufWritePost", {
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.notify(
+						bufnr,
+						"textDocument/didSave",
+						{ textDocument = { uri = vim.uri_from_bufnr(bufnr) } }
+					)
+				end,
+			})
+		end,
+	})
 
 	vim.diagnostic.config({
 		signs = true,
