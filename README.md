@@ -32,23 +32,33 @@ Copy and Paste the code block corresponding to your neovim config's plugin manag
 
 ### lazy.nvim
 ```lua
-{ "YetAnotherMechanicusEnjoyer/epitechlsp.nvim", config = true }
+{
+  "YetAnotherMechanicusEnjoyer/epitechlsp.nvim",
+  dependencies = {
+    "neovim/nvim-lspconfig",
+  },
+  config = true
+}
 ```
 
 ### packer.nvim
 ```lua
-use({
-  "YetAnotherMechanicusEnjoyer/epitechlsp.nvim",
+use {
+  "ton-plugin/nom-du-plugin",
+  requires = {
+    "neovim/nvim-lspconfig"
+  },
   config = function()
     require("epitechlsp").setup()
-  end,
-})
+  end
+}
 ```
 
 ### vim-plug
 `init.vim` ou `init.lua`
 ```vim
-Plug 'TonGitHub/epitechlsp.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'YetAnotherMechanicusEnjoyer/epitechlsp.nvim'
 ```
 `init.lua`
 ```lua
