@@ -1,7 +1,7 @@
 {
   "name": "epitechlsp.nvim",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.9",
+  "description": "Yet Another Epitech Coding Style Checker Language Server Protocol.",
   "main": "epitechlsp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
