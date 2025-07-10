@@ -1,6 +1,6 @@
 # Epitech Language Server Protocol
 
-<img src="https://cdn.discordapp.com/attachments/451371722428383236/1376180453018701974/Screenshot_20250525_144831.png?ex=6834636c&is=683311ec&hm=b4b918abc7b4303706841650ca07fc2754cf5f8eb1c6a63356b0cf8931bd4c50&" />
+<img src="https://i.ibb.co/Y7vsTrDT/Screenshot-20250525-144831.png" alt="Example Image" border="0">
 
 ## Table of Content
 
