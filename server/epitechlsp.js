@@ -37,7 +37,7 @@ function parseEcslsOutput(output) {
     const lineNum = parseInt(lineNumStr, 10) - 1;
 
     const code = rawCode.trim().split(":").pop();
-    console.log(code);
+    connection.console.log(code);
     const def = cdsDB[code] || {
       label: code,
       description: "Unknown error",
